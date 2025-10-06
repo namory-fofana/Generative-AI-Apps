@@ -1,0 +1,15 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Secrets
+.env
+.env.local
+*.key
+config.json
+secrets/
+
+# IDE
+.vscode/
+.idea/
