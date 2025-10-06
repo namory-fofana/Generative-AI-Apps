@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+openai>=1.2.0
+pydantic
+streamlit
+requests

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: content-generator
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: content-generator
+  template:
+    metadata:
+      labels:
+        app: content-generator
+    spec:
+      containers:
+        - name: content-generator
+          image: mory2154/content-generator:latest
+          ports:
+            - containerPort: 8501
+          env:
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: openai-secret
+                  key: OPENAI_API_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: content-generator-service
+spec:
+  selector:
+    app: content-generator
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8501
+  type: LoadBalancer
