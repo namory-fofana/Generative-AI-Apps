@@ -1,6 +1,6 @@
 import cohere
-
-co = cohere.ClientV2("7Vrkkt1PwJjspHHmMUc839FxdIwbRAkrifwFxctT")
+api=os.getenv("COHERE_API_KEY")
+co = cohere.ClientV2(api)
 response = co.chat(
     model="command-a-03-2025", 
     messages=[{"role": "user", "content": "hello world!"}]
